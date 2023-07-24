@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   const homeLink = (
     <div>
       <Link href="/">
-        <a className="bold" data-active={isActive("/")}>
+        <a className="text-3xl font-bold" data-active={isActive("/")}>
           MyHaiku
         </a>
       </Link>
