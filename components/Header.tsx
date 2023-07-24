@@ -10,11 +10,11 @@ const Header: React.FC = () => {
 
   const { data: session, status } = useSession();
 
-  let left = (
-    <div className="left">
+  const homeLink = (
+    <div>
       <Link href="/">
         <a className="bold" data-active={isActive("/")}>
-          Feed
+          MyHaiku
         </a>
       </Link>
       <style jsx>{`
@@ -39,16 +39,14 @@ const Header: React.FC = () => {
     </div>
   );
 
+  let left = <div className="left">{homeLink}</div>;
+
   let right = null;
 
   if (status === "loading") {
     left = (
       <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive("/")}>
-            Feed
-          </a>
-        </Link>
+        {homeLink}
         <style jsx>{`
           .bold {
             font-weight: bold;
@@ -116,14 +114,7 @@ const Header: React.FC = () => {
   if (session) {
     left = (
       <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive("/")}>
-            Feed
-          </a>
-        </Link>
-        <Link href="/drafts">
-          <a data-active={isActive("/drafts")}>My drafts</a>
-        </Link>
+        {homeLink}
         <style jsx>{`
           .bold {
             font-weight: bold;
@@ -147,14 +138,7 @@ const Header: React.FC = () => {
     );
     right = (
       <div className="right">
-        <p>
-          {session.user.name} ({session.user.email})
-        </p>
-        <Link href="/create">
-          <button>
-            <a>New post</a>
-          </button>
-        </Link>
+        <p title={session.user.email}>{session.user.name}</p>
         <button onClick={() => signOut()}>
           <a>Log out</a>
         </button>
@@ -201,6 +185,7 @@ const Header: React.FC = () => {
         nav {
           display: flex;
           padding: 2rem;
+          padding-bottom: 0.5rem;
           align-items: center;
         }
       `}</style>

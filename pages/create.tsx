@@ -42,7 +42,7 @@ const Draft: React.FC = () => {
           />
           <input disabled={!content || !title} type="submit" value="Create" />
           <a className="back" href="#" onClick={() => Router.push("/")}>
-            or Cancel
+            <div style={{ textAlign: "right" }}>Cancel</div>
           </a>
         </form>
       </div>
