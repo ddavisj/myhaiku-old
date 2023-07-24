@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
 import Navigation from "./Navigation";
+import Device from "./Device";
 
 type Props = {
   children: ReactNode;
@@ -8,44 +9,46 @@ type Props = {
 
 const Layout: React.FC<Props> = (props) => (
   <div>
-    <Header />
-    <Navigation />
-    <div className="layout">{props.children}</div>
-    <style jsx global>{`
-      html {
-        box-sizing: border-box;
-      }
+    <Device>
+      <Header />
+      <Navigation />
+      <div className="layout">{props.children}</div>
+      <style jsx global>{`
+        html {
+          box-sizing: border-box;
+        }
 
-      *,
-      *:before,
-      *:after {
-        box-sizing: inherit;
-      }
+        *,
+        *:before,
+        *:after {
+          box-sizing: inherit;
+        }
 
-      body {
-        margin: 0;
-        padding: 0;
-        font-size: 16px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-          "Segoe UI Symbol";
-        background: rgba(0, 0, 0, 0.05);
-      }
+        body {
+          margin: 0;
+          padding: 0;
+          font-size: 16px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+            "Segoe UI Symbol";
+          background: rgba(0, 0, 0, 0.05);
+        }
 
-      input,
-      textarea {
-        font-size: 16px;
-      }
+        input,
+        textarea {
+          font-size: 16px;
+        }
 
-      button {
-        cursor: pointer;
-      }
-    `}</style>
-    <style jsx>{`
-      .layout {
-        padding: 0 2rem;
-      }
-    `}</style>
+        button {
+          cursor: pointer;
+        }
+      `}</style>
+      <style jsx>{`
+        .layout {
+          padding: 0 2rem;
+        }
+      `}</style>
+    </Device>
   </div>
 );
 
