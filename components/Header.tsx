@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
+import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -138,9 +139,12 @@ const Header: React.FC = () => {
     );
     right = (
       <div className="right">
-        <p title={session.user.email}>{session.user.name}</p>
+        {/* <p title={session.user.email}>{session.user.name}</p> */}
         <button onClick={() => signOut()}>
-          <a>Log out</a>
+          <div className="flex items-center">
+            <ArrowRightOnRectangleIcon className="h-5 w-5 text-black-500" />
+            <a className="ml-3">Log out</a>
+          </div>
         </button>
         <style jsx>{`
           a {
@@ -155,19 +159,19 @@ const Header: React.FC = () => {
             padding-right: 1rem;
           }
 
-          a + a {
-            margin-left: 1rem;
-          }
+          // a + a {
+          //   margin-left: 1rem;
+          // }
 
           .right {
             margin-left: auto;
           }
 
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
+          // .right a {
+          //   border: 1px solid var(--geist-foreground);
+          //   padding: 0.5rem 1rem;
+          //   border-radius: 3px;
+          // }
 
           button {
             border: none;

@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
 import Navigation from "./Navigation";
+// import NavBar from "./NavBar";
 import Device from "./Device";
 
 type Props = {
@@ -12,6 +13,7 @@ const Layout: React.FC<Props> = (props) => (
     <Device>
       <Header />
       <Navigation />
+      {/* <NavBar /> */}
       <div className="layout">{props.children}</div>
       <style jsx>{`
         .layout {

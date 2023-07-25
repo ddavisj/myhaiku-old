@@ -11,7 +11,6 @@ const Navigation: React.FC = () => {
   const { data: session, status } = useSession();
 
   let right = null;
-
   let left = null;
 
   if (status === "loading") {
@@ -34,7 +33,9 @@ const Navigation: React.FC = () => {
           <a data-active={isActive("/myposts")}>My haiku</a>
         </Link>
         <Link href="/drafts">
-          <a data-active={isActive("/drafts")}>My drafts</a>
+          <a className="ml-4" data-active={isActive("/drafts")}>
+            My drafts
+          </a>
         </Link>
         <style jsx>{`
           .bold {
@@ -51,50 +52,21 @@ const Navigation: React.FC = () => {
             color: gray;
           }
 
-          a + a {
-            margin-left: 1rem;
-          }
+          // a + a {
+          //   margin-left: 1rem;
+          // }
         `}</style>
       </div>
     );
     right = (
-      <div className="right">
+      <div className="ml-auto">
         <Link href="/create">
-          <button>
-            <a>+ New</a>
+          <button className="btn-blue">
+            <div className="flex">
+              <a>New</a>
+            </div>
           </button>
         </Link>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          p {
-            display: inline-block;
-            font-size: 13px;
-            padding-right: 1rem;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-
-          .right {
-            margin-left: auto;
-          }
-
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
-
-          button {
-            border: none;
-          }
-        `}</style>
       </div>
     );
   }
