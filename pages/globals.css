@@ -4,12 +4,32 @@
 
 /* TW Apply */
 
-.btn-blue {
-  @apply bg-transparent text-blue-700 font-semibold py-1 px-2 border border-blue-500 rounded;
+.btn-nobg {
+  @apply cursor-pointer px-4 py-2 font-semibold text-sm text-white rounded shadow-sm;
 }
 
-.btn-blue:hover {
-  @apply bg-blue-500 text-white border-transparent;
+.btn-regular {
+  @apply cursor-pointer px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded shadow-sm;
+}
+
+.btn-warning {
+  @apply cursor-pointer px-4 py-2 font-semibold text-sm bg-red-600 text-white rounded shadow-sm;
+}
+
+/* My Custom CSS */
+.layout-wrapper {
+  /* background-repeat: repeat-y; */
+  /* position: absolute; */
+  /* top: 0;
+  left: 0; */
+  /* width: 100%; */
+  /* height: 100vh; */
+  z-index: 0;
+}
+
+.layout-content {
+  position: relative;
+  z-index: 1;
 }
 
 /* From template */

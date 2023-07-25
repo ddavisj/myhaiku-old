@@ -18,25 +18,6 @@ const Header: React.FC = () => {
           MyHaiku
         </a>
       </Link>
-      <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
-
-        a {
-          text-decoration: none;
-          color: var(--geist-foreground);
-          display: inline-block;
-        }
-
-        .left a[data-active="true"] {
-          color: gray;
-        }
-
-        a + a {
-          margin-left: 1rem;
-        }
-      `}</style>
     </div>
   );
 
@@ -45,154 +26,47 @@ const Header: React.FC = () => {
   let right = null;
 
   if (status === "loading") {
-    left = (
-      <div className="left">
-        {homeLink}
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          .left a[data-active="true"] {
-            color: gray;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
+    left = <div>{homeLink}</div>;
     right = (
-      <div className="right">
+      <div className="ml-auto">
         <p>Validating session ...</p>
-        <style jsx>{`
-          .right {
-            margin-left: auto;
-          }
-        `}</style>
       </div>
     );
   }
 
   if (!session) {
     right = (
-      <div className="right">
+      <div className="ml-auto">
         <Link href="/api/auth/signin">
-          <a data-active={isActive("/signup")}>Log in</a>
+          <div className="flex items-center cursor-pointer">
+            <ArrowRightOnRectangleIcon className="h-5 w-5" />
+            <a className="ml-3" data-active={isActive("/signup")}>
+              Log in
+            </a>
+          </div>
         </Link>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-
-          .right {
-            margin-left: auto;
-          }
-
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
-        `}</style>
       </div>
     );
   }
 
   if (session) {
-    left = (
-      <div className="left">
-        {homeLink}
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          .left a[data-active="true"] {
-            color: gray;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
+    left = <div>{homeLink}</div>;
     right = (
-      <div className="right">
-        {/* <p title={session.user.email}>{session.user.name}</p> */}
+      <div className="ml-auto">
         <button onClick={() => signOut()}>
-          <div className="flex items-center">
-            <ArrowRightOnRectangleIcon className="h-5 w-5 text-black-500" />
-            <a className="ml-3">Log out</a>
+          <div className="flex items-center pointer">
+            <ArrowRightOnRectangleIcon className="h-4 w-4" />
+            <a className="ml-2 text-sm">Log out</a>
           </div>
         </button>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          p {
-            display: inline-block;
-            font-size: 13px;
-            padding-right: 1rem;
-          }
-
-          // a + a {
-          //   margin-left: 1rem;
-          // }
-
-          .right {
-            margin-left: auto;
-          }
-
-          // .right a {
-          //   border: 1px solid var(--geist-foreground);
-          //   padding: 0.5rem 1rem;
-          //   border-radius: 3px;
-          // }
-
-          button {
-            border: none;
-          }
-        `}</style>
       </div>
     );
   }
 
   return (
-    <nav>
+    <nav className="flex p-8 pb-1 items-center content-center">
       {left}
       {right}
-      <style jsx>{`
-        nav {
-          display: flex;
-          padding: 2rem;
-          padding-bottom: 0.5rem;
-          align-items: center;
-        }
-      `}</style>
     </nav>
   );
 };

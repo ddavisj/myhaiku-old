@@ -9,7 +9,6 @@ import { PostProps } from "../../components/Post";
 import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
 
-
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const post = await prisma.post.findUnique({
     where: {
@@ -65,40 +64,43 @@ const Post: React.FC<PostProps> = (props) => {
         <h2>{title}</h2>
         <p>By {props?.author?.name || "Unknown author"}</p>
         <ReactMarkdown children={props.content} />
-        {userHasValidSession && postBelongsToUser && (
-          <button onClick={() => Router.push("/e/[id]", `/e/${props.id}`)}>Edit</button>
-        )}
-        {!props.published && userHasValidSession && postBelongsToUser && (
-          <button onClick={() => publishPost(props.id)}>Publish</button>
-        )}
-        {props.published && userHasValidSession && postBelongsToUser && (
-          <button onClick={() => unPublishPost(props.id)}>Unpublish</button>
-        )}
-        {userHasValidSession && postBelongsToUser && (
-          <button onClick={() => deletePost(props.id)}>Delete</button>
-        )}
+        <div className="flex mt-6">
+          {userHasValidSession && postBelongsToUser && (
+            <button
+              className="btn-regular"
+              onClick={() => Router.push("/edit/[id]", `/edit/${props.id}`)}
+            >
+              Edit
+            </button>
+          )}
+          {!props.published && userHasValidSession && postBelongsToUser && (
+            <button
+              className="btn-regular ml-4"
+              onClick={() => publishPost(props.id)}
+            >
+              Publish
+            </button>
+          )}
+          {props.published && userHasValidSession && postBelongsToUser && (
+            <button
+              className="btn-regular ml-4"
+              onClick={() => unPublishPost(props.id)}
+            >
+              Unpublish
+            </button>
+          )}
+          <div className="ml-auto">
+            {userHasValidSession && postBelongsToUser && (
+              <button
+                className="btn-warning ml-4"
+                onClick={() => deletePost(props.id)}
+              >
+                Delete
+              </button>
+            )}
+          </div>
+        </div>
       </div>
-      <style jsx>{`
-        .page {
-          background: var(--geist-background);
-          padding: 2rem;
-        }
-
-        .actions {
-          margin-top: 2rem;
-        }
-
-        button {
-          background: #ececec;
-          border: 0;
-          border-radius: 0.125rem;
-          padding: 1rem 2rem;
-        }
-
-        button + button {
-          margin-left: 1rem;
-        }
-      `}</style>
     </Layout>
   );
 };
